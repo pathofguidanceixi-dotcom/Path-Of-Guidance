@@ -2525,6 +2525,300 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* ============================================================
+           DHIKR / TASBIH SECTION (embedded)
+           ============================================================ */
+        #dhikr {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+        #dhikr.active {
+            display: flex;
+        }
+        #dhikr .dhikr-app {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 10px 18px;
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        #dhikr .dhikr-header {
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        #dhikr .dhikr-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        #dhikr .dhikr-header p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        #dhikr .dhikr-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            min-height: 85px;
+            padding: 14px 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            margin-bottom: 8px;
+        }
+        #dhikr .dhikr-content {
+            width: 100%;
+            text-align: center;
+        }
+        #dhikr .arabic {
+            font-size: 24px;
+            color: var(--gold);
+            line-height: 1.4;
+            font-family: 'Amiri', serif;
+            direction: rtl;
+            padding: 0;
+            text-align: center;
+        }
+        #dhikr .trans {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+        #dhikr .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--gold);
+            border-radius: 18px;
+            padding: 8px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform 0.15s ease;
+            font-weight: 600;
+        }
+        #dhikr .nav-btn:active {
+            transform: translateY(-50%) scale(0.94);
+        }
+        #dhikr .previous { left: 10px; }
+        #dhikr .next { right: 10px; }
+
+        #dhikr .tasbih-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 4px 0 2px;
+        }
+        #dhikr .tasbih {
+            position: relative;
+            width: 270px;
+            height: 270px;
+            flex-shrink: 0;
+        }
+        #dhikr .side-target-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        #dhikr .side-target-btn.active {
+            border-color: var(--gold);
+            color: var(--gold-dark);
+            background: var(--gold-subtle);
+            box-shadow: 0 3px 10px rgba(180,147,69,0.20);
+        }
+        #dhikr .side-target-btn:active {
+            transform: scale(0.92);
+        }
+
+        #dhikr .bead {
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, #ffffff 0%, #eeeeee 18%, #bcbcbc 48%, #666666 75%, #333333 100%);
+            border: 1px solid #777777;
+            box-shadow: inset -4px -5px 7px rgba(0,0,0,0.35), inset 3px 3px 5px rgba(255,255,255,0.95), 0 3px 6px rgba(0,0,0,0.20);
+            transform: translate(-50%, -50%);
+            transition: background 0.3s ease, transform 0.5s ease;
+        }
+        body.dark #dhikr .bead {
+            background: radial-gradient(circle at 30% 25%, #cccccc 0%, #aaaaaa 18%, #777777 48%, #444444 75%, #222222 100%);
+            border-color: #555555;
+            box-shadow: inset -4px -5px 7px rgba(0,0,0,0.6), inset 3px 3px 5px rgba(255,255,255,0.5), 0 3px 6px rgba(0,0,0,0.4);
+        }
+        #dhikr .bead.used {
+            background: radial-gradient(circle at 30% 25%, #555555 0%, #292929 35%, #0d0d0d 75%, #000000 100%);
+            border-color: #111111;
+            box-shadow: inset -4px -5px 7px rgba(0,0,0,0.9), inset 3px 3px 4px rgba(255,255,255,0.18), 0 2px 5px rgba(0,0,0,0.35);
+            transform: translate(-50%, -50%) scale(0.94);
+        }
+        body.dark #dhikr .bead.used {
+            background: radial-gradient(circle at 30% 25%, #333333 0%, #111111 35%, #000000 75%, #000000 100%);
+            border-color: #000000;
+        }
+
+        #dhikr .ring-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #dhikr .ring-container.active {
+            display: block;
+        }
+        #dhikr .segment-dot {
+            transition: fill 0.25s ease, stroke 0.25s ease, r 0.2s ease;
+        }
+        #dhikr .segment-dot.completed {
+            fill: var(--text);
+            stroke: var(--gold);
+        }
+
+        #dhikr .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 8px var(--surface), 0 0 0 9px var(--line), 0 5px 18px rgba(0,0,0,0.10);
+            z-index: 10;
+        }
+        #dhikr .count {
+            font-size: 42px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        #dhikr .label {
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        #dhikr .main-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 0px;
+            margin-bottom: 6px;
+        }
+        #dhikr .tap {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: var(--surface);
+            color: var(--gold-dark);
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.08s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0 8px;
+            font-weight: 600;
+        }
+        #dhikr .tap:active { transform: scale(0.94); }
+        #dhikr .control {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #dhikr .control:active { transform: scale(0.94); }
+        #dhikr .reset {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        @media (max-width: 400px) {
+            #dhikr .tasbih {
+                width: 230px;
+                height: 230px;
+            }
+            #dhikr .tap {
+                width: 100px;
+                height: 100px;
+                font-size: 10px;
+            }
+            #dhikr .control {
+                width: 38px;
+                height: 38px;
+                font-size: 15px;
+            }
+            #dhikr .side-target-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 11px;
+            }
+            #dhikr .center {
+                width: 95px;
+                height: 95px;
+            }
+            #dhikr .count {
+                font-size: 34px;
+            }
+        }
+
+        /* Make sure the dhikr section sits properly inside main */
+        #dhikr.section {
+            display: none;
+            flex-direction: column;
+            height: auto;
+            min-height: 0;
+        }
+        #dhikr.section.active {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -2560,7 +2854,7 @@
                 <div class="mosque-silhouette"></div>
             </div>
 
-            <!-- Updated quick-grid: 3 columns, with Saved, Notes, Prayer on first line, Calendar and future functions on second line -->
+            <!-- Home quick-grid: 3 columns -->
             <div class="quick-grid">
                 <div class="quick-card" onclick="switchTab('saved')">
                     <div class="icon-circle"><i class="fa-solid fa-bookmark"></i></div>
@@ -2578,7 +2872,10 @@
                     <div class="icon-circle"><i class="fa-solid fa-calendar-days"></i></div>
                     <span>Calendar</span>
                 </div>
-                <!-- Future function cards will be added here in the same 3‑column grid -->
+                <div class="quick-card" onclick="switchTab('dhikr')">
+                    <div class="icon-circle"><i class="fa-solid fa-circle-dot"></i></div>
+                    <span>Dhikr / Tasbih</span>
+                </div>
             </div>
         </section>
 
@@ -2689,7 +2986,7 @@
         <section id="calendar" class="section">
             <!-- Hero banner has been removed as requested -->
 
-            <!-- Today Card — now with gray border -->
+            <!-- Today Card — with gray border -->
             <section class="cal-today-card">
                 <div class="cal-today-label">TODAY</div>
                 <div class="cal-today-hijri" id="todayHijri">Loading...</div>
@@ -2750,6 +3047,47 @@
             <div class="cal-note">
                 Islamic dates may differ by one day depending on local moon sighting and the Islamic authority followed.
                 For religious observance, follow your local mosque or recognised Islamic authority.
+            </div>
+        </section>
+
+        <!-- DHIKR / TASBIH (embedded) -->
+        <section id="dhikr" class="section">
+            <div class="dhikr-app">
+                <!-- HEADER -->
+                <div class="dhikr-header">
+                    <h1>Dhikr</h1>
+                    <p>"Verily, in the remembrance of Allah do hearts find rest."<br>-Quran-</p>
+                </div>
+
+                <!-- DHIKR CARD -->
+                <div class="dhikr-card">
+                    <button class="nav-btn previous" onclick="previousDhikr()">← Previous</button>
+                    <div class="dhikr-content">
+                        <div class="arabic" id="dhikrArabic">سُبْحَانَ اللَّهِ</div>
+                        <div class="trans" id="dhikrTrans">SubhanAllah</div>
+                    </div>
+                    <button class="nav-btn next" onclick="nextDhikr()">Next →</button>
+                </div>
+
+                <!-- TASBIH WITH SIDE TARGET BUTTONS -->
+                <div class="tasbih-wrapper">
+                    <button class="side-target-btn active" id="target33" onclick="setTarget(33)">33</button>
+                    <div class="tasbih" id="tasbih">
+                        <svg class="ring-container" id="ringContainer" viewBox="0 0 290 290"></svg>
+                        <div class="center">
+                            <div class="count" id="dhikrCount">0</div>
+                            <div class="label">COUNT</div>
+                        </div>
+                    </div>
+                    <button class="side-target-btn" id="target100" onclick="setTarget(100)">100</button>
+                </div>
+
+                <!-- MAIN CONTROLS ROW -->
+                <div class="main-controls">
+                    <button class="control reset" onclick="resetDhikr()" title="Reset">↻</button>
+                    <button class="tap" onclick="increaseDhikr()">TAP<br>TO COUNT</button>
+                    <button class="control" onclick="decreaseDhikr()" title="Decrease">−</button>
+                </div>
             </div>
         </section>
 
@@ -3033,6 +3371,317 @@
         let currentTafseerSurah = null;
         let currentTafseerSource = 'ibn_kathir';
 
+        // ===== DHIKR / TASBIH STATE & LOGIC =====
+        const dhikrs = [
+            { arabic: "سُبْحَانَ اللَّهِ", english: "SubhanAllah" },
+            { arabic: "الْحَمْدُ لِلَّهِ", english: "Alhamdulillah" },
+            { arabic: "اللَّهُ أَكْبَرُ", english: "Allahu Akbar" },
+            { arabic: "أَسْتَغْفِرُ اللَّهَ", english: "Astaghfirullah" },
+            { arabic: "لَا إِلَٰهَ إِلَّا اللَّهُ", english: "La ilaha illallah" }
+        ];
+        let currentDhikr = 0;
+        let dhikrCount = 0;
+        let dhikrTarget = 33;
+
+        const dhikrArabicEl = document.getElementById("dhikrArabic");
+        const dhikrTransEl = document.getElementById("dhikrTrans");
+        const dhikrCountEl = document.getElementById("dhikrCount");
+        const dhikrTasbih = document.getElementById("tasbih");
+        const dhikrRingContainer = document.getElementById("ringContainer");
+        const dhikrTarget33 = document.getElementById("target33");
+        const dhikrTarget100 = document.getElementById("target100");
+
+        // Web Audio API for dhikr sounds
+        let dhikrAudioCtx = null;
+        function getDhikrAudioContext() {
+            if (!dhikrAudioCtx) {
+                try {
+                    dhikrAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) { return null; }
+            }
+            if (dhikrAudioCtx.state === "suspended") dhikrAudioCtx.resume();
+            return dhikrAudioCtx;
+        }
+
+        function playDhikrTapSound() {
+            const ctx = getDhikrAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(880, now);
+            osc.frequency.exponentialRampToValueAtTime(420, now + 0.08);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.28, now + 0.005);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.14);
+
+            const osc2 = ctx.createOscillator();
+            const gain2 = ctx.createGain();
+            osc2.type = "triangle";
+            osc2.frequency.setValueAtTime(1600, now);
+            osc2.frequency.exponentialRampToValueAtTime(700, now + 0.04);
+            gain2.gain.setValueAtTime(0.0001, now);
+            gain2.gain.exponentialRampToValueAtTime(0.12, now + 0.003);
+            gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(now);
+            osc2.stop(now + 0.07);
+        }
+
+        function playDhikrNavSound() {
+            const ctx = getDhikrAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(500, now);
+            osc.frequency.exponentialRampToValueAtTime(950, now + 0.10);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.14, now + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.17);
+        }
+
+        function playDhikrTargetSound() {
+            const ctx = getDhikrAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(320, now);
+            osc.frequency.exponentialRampToValueAtTime(760, now + 0.06);
+            osc.frequency.exponentialRampToValueAtTime(520, now + 0.12);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.22, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.16);
+        }
+
+        function playDhikrResetSound() {
+            const ctx = getDhikrAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(700, now);
+            osc.frequency.exponentialRampToValueAtTime(300, now + 0.15);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.19);
+        }
+
+        function playDhikrDecreaseSound() {
+            const ctx = getDhikrAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "square";
+            osc.frequency.setValueAtTime(540, now);
+            osc.frequency.exponentialRampToValueAtTime(240, now + 0.05);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.10, now + 0.004);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.09);
+        }
+
+        function createDhikrBeads() {
+            clearDhikrUI();
+            dhikrRingContainer.classList.remove("active");
+            for (let i = 0; i < 33; i++) {
+                const bead = document.createElement("div");
+                bead.className = "bead";
+                const angle = (i / 33) * Math.PI * 2 - Math.PI / 2;
+                const radius = 115;
+                const x = 135 + Math.cos(angle) * radius;
+                const y = 135 + Math.sin(angle) * radius;
+                bead.style.left = x + "px";
+                bead.style.top = y + "px";
+                dhikrTasbih.appendChild(bead);
+            }
+        }
+
+        function createDhikr100Ring() {
+            clearDhikrUI();
+            dhikrRingContainer.innerHTML = "";
+            dhikrRingContainer.classList.add("active");
+            const radius = 115;
+            const center = 135;
+            const totalSegments = 100;
+            const ringTrack = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            ringTrack.setAttribute("cx", center);
+            ringTrack.setAttribute("cy", center);
+            ringTrack.setAttribute("r", radius);
+            ringTrack.setAttribute("fill", "none");
+            ringTrack.setAttribute("stroke", "var(--line)");
+            ringTrack.setAttribute("stroke-width", "2");
+            dhikrRingContainer.appendChild(ringTrack);
+            for (let i = 0; i < totalSegments; i++) {
+                const angle = (i / totalSegments) * Math.PI * 2 - Math.PI / 2;
+                const cx = center + Math.cos(angle) * radius;
+                const cy = center + Math.sin(angle) * radius;
+                const isQuarterDivider = i % 25 === 0;
+                const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                dot.setAttribute("cx", cx);
+                dot.setAttribute("cy", cy);
+                dot.setAttribute("r", isQuarterDivider ? "4" : "2.2");
+                dot.setAttribute("fill", isQuarterDivider ? "var(--gold)" : "var(--line)");
+                dot.setAttribute("class", "segment-dot");
+                dot.setAttribute("id", `dot-${i}`);
+                dhikrRingContainer.appendChild(dot);
+            }
+        }
+
+        function clearDhikrUI() {
+            dhikrTasbih.querySelectorAll(".bead").forEach(bead => bead.remove());
+            dhikrRingContainer.innerHTML = "";
+        }
+
+        function setTarget(newTarget) {
+            playDhikrTargetSound();
+            dhikrTarget = newTarget;
+            if (dhikrTarget === 33) {
+                dhikrTarget33.classList.add("active");
+                dhikrTarget100.classList.remove("active");
+                createDhikrBeads();
+            } else {
+                dhikrTarget100.classList.add("active");
+                dhikrTarget33.classList.remove("active");
+                createDhikr100Ring();
+            }
+            resetDhikrSilent();
+        }
+
+        function increaseDhikr() {
+            if (dhikrCount >= dhikrTarget) return;
+            dhikrCount++;
+            playDhikrTapSound();
+            if (dhikrTarget === 33) {
+                const beads = dhikrTasbih.querySelectorAll(".bead");
+                if (beads[dhikrCount - 1]) beads[dhikrCount - 1].classList.add("used");
+            } else {
+                const dot = document.getElementById(`dot-${dhikrCount - 1}`);
+                if (dot) {
+                    dot.classList.add("completed");
+                    dot.setAttribute("fill", "var(--text)");
+                    dot.setAttribute("stroke", "var(--gold)");
+                    dot.setAttribute("stroke-width", "1");
+                }
+            }
+            dhikrCountEl.textContent = dhikrCount;
+            if (dhikrCount === dhikrTarget) {
+                setTimeout(() => nextDhikr(), 900);
+            }
+        }
+
+        function decreaseDhikr() {
+            if (dhikrCount <= 0) return;
+            playDhikrDecreaseSound();
+            if (dhikrTarget === 33) {
+                const beads = dhikrTasbih.querySelectorAll(".bead");
+                if (beads[dhikrCount - 1]) beads[dhikrCount - 1].classList.remove("used");
+            } else {
+                const dot = document.getElementById(`dot-${dhikrCount - 1}`);
+                if (dot) {
+                    dot.classList.remove("completed");
+                    const isQuarter = (dhikrCount - 1) % 25 === 0;
+                    dot.setAttribute("fill", isQuarter ? "var(--gold)" : "var(--line)");
+                    dot.removeAttribute("stroke");
+                }
+            }
+            dhikrCount--;
+            dhikrCountEl.textContent = dhikrCount;
+        }
+
+        function resetDhikr() {
+            playDhikrResetSound();
+            resetDhikrSilent();
+        }
+
+        function resetDhikrSilent() {
+            dhikrCount = 0;
+            dhikrCountEl.textContent = "0";
+            if (dhikrTarget === 33) {
+                dhikrTasbih.querySelectorAll(".bead").forEach(b => b.classList.remove("used"));
+            } else {
+                for (let i = 0; i < 100; i++) {
+                    const dot = document.getElementById(`dot-${i}`);
+                    if (dot) {
+                        dot.classList.remove("completed");
+                        const isQuarter = i % 25 === 0;
+                        dot.setAttribute("fill", isQuarter ? "var(--gold)" : "var(--line)");
+                        dot.removeAttribute("stroke");
+                    }
+                }
+            }
+        }
+
+        function nextDhikr() {
+            playDhikrNavSound();
+            currentDhikr = (currentDhikr + 1) % dhikrs.length;
+            updateDhikr();
+        }
+
+        function previousDhikr() {
+            playDhikrNavSound();
+            currentDhikr = (currentDhikr - 1 + dhikrs.length) % dhikrs.length;
+            updateDhikr();
+        }
+
+        function updateDhikr() {
+            dhikrArabicEl.textContent = dhikrs[currentDhikr].arabic;
+            dhikrTransEl.textContent = dhikrs[currentDhikr].english;
+            resetDhikrSilent();
+        }
+
+        // Initialize dhikr UI
+        createDhikrBeads();
+
+        // Unlock audio on first interaction
+        document.addEventListener("touchstart", function unlockDhikrAudio() {
+            getDhikrAudioContext();
+            document.removeEventListener("touchstart", unlockDhikrAudio);
+        }, { once: true });
+        document.addEventListener("click", function unlockDhikrAudioClick() {
+            getDhikrAudioContext();
+            document.removeEventListener("click", unlockDhikrAudioClick);
+        }, { once: true });
+
+        // Prevent pinch zoom & double tap
+        document.addEventListener('touchmove', function (event) {
+            if (event.scale !== 1) { event.preventDefault(); }
+        }, { passive: false });
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) { event.preventDefault(); }
+            lastTouchEnd = now;
+        }, false);
+
+        // ===== END DHIKR LOGIC =====
+
         // TOP BAR BUTTON MANAGER
         function updateTopBarButtons(tabId) {
             const contactBtn = document.getElementById('contactBtn');
@@ -3047,7 +3696,7 @@
             hadithBtn.style.display = 'none';
             duaBtn.style.display = 'none';
 
-            if (tabId === 'home' || tabId === 'books' || tabId === 'saved' || tabId === 'notes' || tabId === 'prayer' || tabId === 'calendar') {
+            if (tabId === 'home' || tabId === 'books' || tabId === 'saved' || tabId === 'notes' || tabId === 'prayer' || tabId === 'calendar' || tabId === 'dhikr') {
                 contactBtn.style.display = 'grid';
                 themeBtn.style.display = 'grid';
             } else if (tabId === 'quran') {
@@ -4456,6 +5105,9 @@
                 renderCalendar();
                 renderSelectedDate();
                 renderFestivals();
+            }
+            if (tabId === "dhikr") {
+                // dhikr section already initialized
             }
             updateTopBarButtons(tabId);
             window.scrollTo({ top: 0, behavior: "smooth" });
