@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0" />
     <meta name="theme-color" content="#0a0a0a" />
     <title>Path Of Guidance — Quran, Hadith & Duas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         :root {
             --bg: #f8f6f2;
@@ -59,9 +60,9 @@
         }
         html {
             scroll-behavior: smooth;
-            /* Allow normal panning/scrolling everywhere */
             touch-action: pan-x pan-y;
             -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
         }
         body {
             background: var(--bg);
@@ -74,6 +75,7 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             touch-action: pan-x pan-y;
+            overscroll-behavior-y: contain;
         }
         button, input, select, textarea {
             font: inherit;
@@ -364,7 +366,7 @@
             color: var(--gold);
         }
 
-        /* HOME DASHBOARD — Updated quick-grid */
+        /* HOME DASHBOARD */
         .quick-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1391,7 +1393,6 @@
             margin-bottom: 14px;
         }
 
-        /* Urdu Tafseer — matches the Quran Urdu translation style */
         .tafseer-body .tafseer-text-urdu {
             font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Amiri', serif;
             direction: rtl;
@@ -2108,7 +2109,7 @@
         }
 
         /* ============================================================
-           ISLAMIC CALENDAR (Standalone Section) — updated styles
+           ISLAMIC CALENDAR
            ============================================================ */
         #calendar .cal-page-hero {
             background: linear-gradient(160deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
@@ -2148,7 +2149,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* Today Card — Updated with gray border for dark mode visibility */
         .cal-today-card {
             padding: 18px 16px;
             background: var(--surface-dark);
@@ -2188,7 +2188,6 @@
             font-weight: 600;
         }
 
-        /* Month Navigation */
         .cal-month-navigation {
             display: flex;
             align-items: center;
@@ -2231,7 +2230,6 @@
             font-size: 0.7rem;
         }
 
-        /* Today Button */
         .cal-today-button {
             display: block;
             margin: 0 auto 14px;
@@ -2249,7 +2247,6 @@
             transform: scale(0.97);
         }
 
-        /* Calendar Wrapper */
         .cal-wrapper {
             padding: 12px;
             background: var(--surface);
@@ -2263,7 +2260,6 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
-        /* Weekdays */
         .cal-weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -2281,7 +2277,6 @@
             color: var(--gold);
         }
 
-        /* Calendar Grid */
         .cal-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -2345,7 +2340,6 @@
             background: var(--gold);
         }
 
-        /* Selected Date Card */
         .cal-selected-card {
             padding: 15px 16px;
             background: var(--surface-dark);
@@ -2370,7 +2364,6 @@
             font-size: 0.72rem;
         }
 
-        /* Event Card */
         .cal-event-card {
             padding: 15px 16px;
             background: var(--surface2);
@@ -2405,7 +2398,6 @@
             line-height: 1.5;
         }
 
-        /* Festivals Section */
         .cal-festivals-section {
             margin-top: 4px;
         }
@@ -2421,7 +2413,6 @@
             font-size: 0.72rem;
         }
 
-        /* Festival Item */
         .cal-festival-item {
             display: flex;
             align-items: center;
@@ -2495,7 +2486,6 @@
             background: var(--gold-subtle);
         }
 
-        /* Calendar Note */
         .cal-note {
             margin: 16px 4px 0;
             color: var(--muted);
@@ -2531,12 +2521,15 @@
         }
 
         /* ============================================================
-           DHIKR / TASBIH SECTION (embedded)
+           DHIKR / TASBIH — ANDROID OPTIMIZED
            ============================================================ */
         #dhikr {
             display: none;
             flex-direction: column;
-            height: 100%;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            touch-action: manipulation;
         }
         #dhikr.active {
             display: flex;
@@ -2545,23 +2538,28 @@
             width: 100%;
             max-width: 430px;
             margin: 0 auto;
-            padding: 10px 18px;
+            padding: 8px 14px 4px;
             background: var(--surface);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            flex: 1;
+            align-items: stretch;
+            justify-content: flex-start;
             border-radius: var(--radius-lg);
             overflow: hidden;
+            box-sizing: border-box;
+            gap: 6px;
+            touch-action: manipulation;
         }
         #dhikr .dhikr-header {
             text-align: center;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
         #dhikr .dhikr-header h1 {
             font-size: 22px;
             font-weight: 700;
             color: var(--text);
+            line-height: 1.2;
         }
         #dhikr .dhikr-header p {
             margin-top: 4px;
@@ -2573,32 +2571,39 @@
             position: relative;
             background: var(--surface);
             border: 1px solid var(--line);
-            border-radius: 18px;
-            min-height: 85px;
-            padding: 14px 65px;
+            border-radius: 16px;
+            min-height: 82px;
+            padding: 12px 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            width: 100%;
         }
         #dhikr .dhikr-content {
             width: 100%;
             text-align: center;
+            overflow: hidden;
         }
         #dhikr .arabic {
-            font-size: 24px;
+            font-size: 22px;
             color: var(--gold);
             line-height: 1.4;
             font-family: 'Amiri', serif;
             direction: rtl;
             padding: 0;
             text-align: center;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         #dhikr .trans {
             margin-top: 4px;
             color: var(--muted);
             font-size: 12px;
+            line-height: 1.3;
         }
         #dhikr .nav-btn {
             position: absolute;
@@ -2607,42 +2612,50 @@
             background: var(--surface);
             border: 1px solid var(--line);
             color: var(--gold);
-            border-radius: 18px;
-            padding: 8px 10px;
+            border-radius: 16px;
+            padding: 8px 9px;
             font-size: 10px;
             cursor: pointer;
             white-space: nowrap;
             transition: transform 0.15s ease;
             font-weight: 600;
+            z-index: 2;
+            line-height: 1;
+            min-width: 0;
         }
         #dhikr .nav-btn:active {
             transform: translateY(-50%) scale(0.94);
         }
-        #dhikr .previous { left: 10px; }
-        #dhikr .next { right: 10px; }
+        #dhikr .previous { left: 6px; }
+        #dhikr .next { right: 6px; }
 
         #dhikr .tasbih-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin: 4px 0 2px;
+            margin: 2px 0 0;
+            flex-shrink: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         #dhikr .tasbih {
             position: relative;
-            width: 270px;
-            height: 270px;
+            width: 260px;
+            height: 260px;
+            max-width: 68vw;
+            max-height: 68vw;
             flex-shrink: 0;
         }
         #dhikr .side-target-btn {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             background: var(--surface);
             border: 1px solid var(--line);
             color: var(--muted);
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -2650,6 +2663,9 @@
             transition: all 0.2s ease;
             flex-shrink: 0;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            padding: 0;
+            line-height: 1;
+            touch-action: manipulation;
         }
         #dhikr .side-target-btn.active {
             border-color: var(--gold);
@@ -2663,8 +2679,8 @@
 
         #dhikr .bead {
             position: absolute;
-            width: 27px;
-            height: 27px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 25%, #ffffff 0%, #eeeeee 18%, #bcbcbc 48%, #666666 75%, #333333 100%);
             border: 1px solid #777777;
@@ -2712,8 +2728,8 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 115px;
-            height: 115px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             background: var(--surface);
             border: 1px solid var(--line);
@@ -2725,28 +2741,32 @@
             z-index: 10;
         }
         #dhikr .count {
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 500;
             color: var(--text);
+            line-height: 1;
         }
         #dhikr .label {
             color: var(--muted);
             font-size: 9px;
             letter-spacing: 2px;
-            margin-top: 2px;
+            margin-top: 3px;
+            line-height: 1;
         }
 
         #dhikr .main-controls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-top: 0px;
-            margin-bottom: 6px;
+            gap: 14px;
+            margin: 2px 0 6px;
+            flex-shrink: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         #dhikr .tap {
-            width: 120px;
-            height: 120px;
+            width: 116px;
+            height: 116px;
             border-radius: 50%;
             border: 1px solid var(--gold);
             background: var(--surface);
@@ -2760,8 +2780,10 @@
             justify-content: center;
             text-align: center;
             line-height: 1.2;
-            padding: 0 8px;
+            padding: 0 6px;
             font-weight: 600;
+            flex-shrink: 0;
+            touch-action: manipulation;
         }
         #dhikr .tap:active { transform: scale(0.94); }
         #dhikr .control {
@@ -2777,6 +2799,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+            padding: 0;
+            line-height: 1;
+            touch-action: manipulation;
         }
         #dhikr .control:active { transform: scale(0.94); }
         #dhikr .reset {
@@ -2784,41 +2810,129 @@
             border-color: var(--gold);
         }
 
+        /* Small Android phones */
         @media (max-width: 400px) {
+            #dhikr .dhikr-app {
+                padding: 6px 10px 2px;
+                gap: 4px;
+            }
+            #dhikr .dhikr-header h1 {
+                font-size: 20px;
+            }
+            #dhikr .dhikr-header p {
+                font-size: 10px;
+            }
+            #dhikr .dhikr-card {
+                min-height: 74px;
+                padding: 10px 54px;
+            }
+            #dhikr .arabic {
+                font-size: 20px;
+            }
+            #dhikr .trans {
+                font-size: 11px;
+            }
+            #dhikr .nav-btn {
+                padding: 7px 8px;
+                font-size: 9px;
+            }
+            #dhikr .previous { left: 4px; }
+            #dhikr .next { right: 4px; }
             #dhikr .tasbih {
-                width: 230px;
-                height: 230px;
+                width: 220px;
+                height: 220px;
+                max-width: 62vw;
+                max-height: 62vw;
+            }
+            #dhikr .side-target-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+            }
+            #dhikr .bead {
+                width: 22px;
+                height: 22px;
+            }
+            #dhikr .center {
+                width: 92px;
+                height: 92px;
+                box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 5px 16px rgba(0,0,0,0.10);
+            }
+            #dhikr .count {
+                font-size: 32px;
+            }
+            #dhikr .label {
+                font-size: 8px;
+            }
+            #dhikr .main-controls {
+                gap: 10px;
+                margin: 2px 0 4px;
             }
             #dhikr .tap {
-                width: 100px;
-                height: 100px;
-                font-size: 10px;
+                width: 96px;
+                height: 96px;
+                font-size: 11px;
             }
             #dhikr .control {
                 width: 38px;
                 height: 38px;
                 font-size: 15px;
             }
+        }
+
+        /* Very small screens */
+        @media (max-width: 350px) {
+            #dhikr .dhikr-app {
+                padding: 6px 8px 2px;
+            }
+            #dhikr .dhikr-card {
+                min-height: 68px;
+                padding: 8px 48px;
+            }
+            #dhikr .arabic {
+                font-size: 18px;
+            }
+            #dhikr .tasbih {
+                width: 190px;
+                height: 190px;
+                max-width: 58vw;
+                max-height: 58vw;
+            }
             #dhikr .side-target-btn {
-                width: 40px;
-                height: 40px;
+                width: 36px;
+                height: 36px;
                 font-size: 11px;
             }
+            #dhikr .bead {
+                width: 19px;
+                height: 19px;
+            }
             #dhikr .center {
-                width: 95px;
-                height: 95px;
+                width: 80px;
+                height: 80px;
             }
             #dhikr .count {
-                font-size: 34px;
+                font-size: 28px;
+            }
+            #dhikr .tap {
+                width: 84px;
+                height: 84px;
+                font-size: 10px;
+            }
+            #dhikr .control {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
             }
         }
 
-        /* Make sure the dhikr section sits properly inside main */
+        /* Ensure section wrapper respects the flex layout */
         #dhikr.section {
             display: none;
             flex-direction: column;
-            height: auto;
-            min-height: 0;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
         }
         #dhikr.section.active {
             display: flex;
@@ -2858,7 +2972,6 @@
                 <div class="mosque-silhouette"></div>
             </div>
 
-            <!-- Home quick-grid: 3 columns -->
             <div class="quick-grid">
                 <div class="quick-card" onclick="switchTab('saved')">
                     <div class="icon-circle"><i class="fa-solid fa-bookmark"></i></div>
@@ -2986,11 +3099,8 @@
             <div id="prayerLocationMain" style="display:none;"></div>
         </section>
 
-        <!-- ISLAMIC CALENDAR (Standalone Section) -->
+        <!-- ISLAMIC CALENDAR -->
         <section id="calendar" class="section">
-            <!-- Hero banner has been removed as requested -->
-
-            <!-- Today Card — with gray border -->
             <section class="cal-today-card">
                 <div class="cal-today-label">TODAY</div>
                 <div class="cal-today-hijri" id="todayHijri">Loading...</div>
@@ -2998,7 +3108,6 @@
                 <div class="cal-today-weekday" id="todayWeekday">Loading...</div>
             </section>
 
-            <!-- Month Navigation -->
             <div class="cal-month-navigation">
                 <button class="cal-nav-button" id="previousMonth" aria-label="Previous month">‹</button>
                 <div class="cal-month-heading">
@@ -3008,10 +3117,8 @@
                 <button class="cal-nav-button" id="nextMonth" aria-label="Next month">›</button>
             </div>
 
-            <!-- Today Button -->
             <button class="cal-today-button" id="todayButton">Today</button>
 
-            <!-- Calendar -->
             <section class="cal-wrapper">
                 <div class="cal-weekdays">
                     <div class="cal-weekday">Sun</div>
@@ -3025,14 +3132,12 @@
                 <div class="cal-grid" id="calendarGrid"></div>
             </section>
 
-            <!-- Selected Date -->
             <section class="cal-selected-card">
                 <div class="cal-selected-label">SELECTED DATE</div>
                 <div class="cal-selected-hijri" id="selectedHijri">Select a day</div>
                 <div class="cal-selected-gregorian" id="selectedGregorian">Tap any date on the calendar.</div>
             </section>
 
-            <!-- Selected Event -->
             <section class="cal-event-card" id="eventCard" style="display:none;">
                 <div class="cal-event-label">ISLAMIC OCCASION</div>
                 <div class="cal-event-title" id="eventTitle"></div>
@@ -3040,30 +3145,26 @@
                 <div class="cal-event-description" id="eventDescription"></div>
             </section>
 
-            <!-- Festivals & Events -->
             <section class="cal-festivals-section">
                 <div class="cal-section-title">Islamic Festivals & Events</div>
                 <div class="cal-section-subtitle">Important dates in the Hijri calendar</div>
                 <div id="festivalsList"></div>
             </section>
 
-            <!-- Note -->
             <div class="cal-note">
                 Islamic dates may differ by one day depending on local moon sighting and the Islamic authority followed.
                 For religious observance, follow your local mosque or recognised Islamic authority.
             </div>
         </section>
 
-        <!-- DHIKR / TASBIH (embedded) -->
+        <!-- DHIKR / TASBIH -->
         <section id="dhikr" class="section">
             <div class="dhikr-app">
-                <!-- HEADER -->
                 <div class="dhikr-header">
                     <h1>Dhikr</h1>
                     <p>"Verily, in the remembrance of Allah do hearts find rest."<br>-Quran-</p>
                 </div>
 
-                <!-- DHIKR CARD -->
                 <div class="dhikr-card">
                     <button class="nav-btn previous" onclick="previousDhikr()">← Previous</button>
                     <div class="dhikr-content">
@@ -3073,7 +3174,6 @@
                     <button class="nav-btn next" onclick="nextDhikr()">Next →</button>
                 </div>
 
-                <!-- TASBIH WITH SIDE TARGET BUTTONS -->
                 <div class="tasbih-wrapper">
                     <button class="side-target-btn active" id="target33" onclick="setTarget(33)">33</button>
                     <div class="tasbih" id="tasbih">
@@ -3086,7 +3186,6 @@
                     <button class="side-target-btn" id="target100" onclick="setTarget(100)">100</button>
                 </div>
 
-                <!-- MAIN CONTROLS ROW -->
                 <div class="main-controls">
                     <button class="control reset" onclick="resetDhikr()" title="Reset">↻</button>
                     <button class="tap" onclick="increaseDhikr()">TAP<br>TO COUNT</button>
@@ -3514,13 +3613,20 @@
         function createDhikrBeads() {
             clearDhikrUI();
             dhikrRingContainer.classList.remove("active");
+            // Use the actual rendered size to keep beads aligned with responsive tasbih
+            const size = dhikrTasbih.clientWidth || 260;
+            const center = size / 2;
+            const radius = size * 0.44;
+            const beadSize = Math.max(18, size * 0.10);
+            const beads = dhikrTasbih.querySelectorAll(".bead");
             for (let i = 0; i < 33; i++) {
                 const bead = document.createElement("div");
                 bead.className = "bead";
+                bead.style.width = beadSize + "px";
+                bead.style.height = beadSize + "px";
                 const angle = (i / 33) * Math.PI * 2 - Math.PI / 2;
-                const radius = 115;
-                const x = 135 + Math.cos(angle) * radius;
-                const y = 135 + Math.sin(angle) * radius;
+                const x = center + Math.cos(angle) * radius;
+                const y = center + Math.sin(angle) * radius;
                 bead.style.left = x + "px";
                 bead.style.top = y + "px";
                 dhikrTasbih.appendChild(bead);
@@ -3531,8 +3637,9 @@
             clearDhikrUI();
             dhikrRingContainer.innerHTML = "";
             dhikrRingContainer.classList.add("active");
-            const radius = 115;
-            const center = 135;
+            // Use viewBox coordinates so it scales with the responsive container
+            const center = 145;
+            const radius = 118;
             const totalSegments = 100;
             const ringTrack = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             ringTrack.setAttribute("cx", center);
@@ -3550,7 +3657,7 @@
                 const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                 dot.setAttribute("cx", cx);
                 dot.setAttribute("cy", cy);
-                dot.setAttribute("r", isQuarterDivider ? "4" : "2.2");
+                dot.setAttribute("r", isQuarterDivider ? "4.5" : "2.5");
                 dot.setAttribute("fill", isQuarterDivider ? "var(--gold)" : "var(--line)");
                 dot.setAttribute("class", "segment-dot");
                 dot.setAttribute("id", `dot-${i}`);
@@ -3663,6 +3770,17 @@
         // Initialize dhikr UI
         createDhikrBeads();
 
+        // Recalculate beads on resize/orientation change for Android
+        let dhikrResizeTimeout = null;
+        window.addEventListener("resize", function () {
+            if (currentTab !== "dhikr") return;
+            clearTimeout(dhikrResizeTimeout);
+            dhikrResizeTimeout = setTimeout(function () {
+                if (dhikrTarget === 33) createDhikrBeads();
+                else createDhikr100Ring();
+            }, 180);
+        });
+
         // Unlock audio on first interaction
         document.addEventListener("touchstart", function unlockDhikrAudio() {
             getDhikrAudioContext();
@@ -3675,11 +3793,9 @@
 
         // ===== ANDROID SCROLL FIX =====
         // Prevent pinch zoom & double tap ONLY inside the dhikr section.
-        // Attaching these to the whole document was blocking page scrolling on Android.
         const dhikrSection = document.getElementById('dhikr');
         if (dhikrSection) {
             dhikrSection.addEventListener('touchmove', function (event) {
-                // Some Android WebViews don't provide event.scale on touchmove.
                 if (event.scale !== undefined && event.scale !== 1) { event.preventDefault(); }
             }, { passive: false });
             let lastDhikrTouchEnd = 0;
@@ -3689,6 +3805,14 @@
                 lastDhikrTouchEnd = now;
             }, false);
         }
+
+        // Prevent pinch-zoom globally on the document (Android safeguard) but
+        // allow panning/scrolling everywhere.
+        document.addEventListener('touchmove', function (event) {
+            if (event.scale !== undefined && event.scale !== 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
 
         // ===== END DHIKR LOGIC =====
 
@@ -5117,7 +5241,11 @@
                 renderFestivals();
             }
             if (tabId === "dhikr") {
-                // dhikr section already initialized
+                // Recalculate bead positions after the section becomes visible
+                setTimeout(function () {
+                    if (dhikrTarget === 33) createDhikrBeads();
+                    else createDhikr100Ring();
+                }, 50);
             }
             updateTopBarButtons(tabId);
             window.scrollTo({ top: 0, behavior: "smooth" });
