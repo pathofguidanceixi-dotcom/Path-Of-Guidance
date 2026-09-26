@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0a0a0a" />
     <title>Path Of Guidance — Quran, Hadith & Duas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -48,6 +48,9 @@
             --title-fs: 16px;
             --ui-fs: 14px;
             --tafseer-fs: 15px;
+
+            /* Urdu font stack — consistent on all devices (Android, iOS, Desktop) */
+            --urdu-font: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Amiri', 'Traditional Arabic', serif;
         }
         body.dark {
             --bg: #0a0a0a;
@@ -133,8 +136,8 @@
             transform: scale(1.05);
         }
         .profile-photo {
-            width: 100%;
-            height: 100%;
+            width: 73%;
+            height: 73%;
             object-fit: cover;
             transform: scale(1.5);
             object-position: center;
@@ -142,6 +145,7 @@
         .top-actions {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         .icon-btn {
             width: 40px;
@@ -697,13 +701,21 @@
             font-size: var(--content-fs);
             color: var(--muted);
         }
+        /* --------------------------------------------------------------
+           URDU TEXT — CONSISTENT FONT ON ALL DEVICES (ANDROID INCLUDED)
+           -------------------------------------------------------------- */
         .urdu {
-            font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Amiri', serif;
+            font-family: var(--urdu-font);
             direction: rtl;
             text-align: right;
             color: var(--gold);
             font-size: calc(var(--hadith-content-fs) * 1.05);
             line-height: 2.2;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1;
+            font-kerning: normal;
         }
         .hindi {
             line-height: 1.8;
@@ -1383,13 +1395,16 @@
             margin-bottom: 14px;
         }
 
+        /* Urdu Tafseer – consistent font */
         .tafseer-body .tafseer-text-urdu {
-            font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Amiri', serif;
+            font-family: var(--urdu-font);
             direction: rtl;
             text-align: right;
             color: var(--gold);
             font-size: calc(var(--tafseer-fs) * 1.05);
             line-height: 2.2;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .tafseer-body .tafseer-text-urdu p {
             margin-bottom: 14px;
@@ -2783,19 +2798,20 @@
         }
     </style>
 </head>
-<body>
+<body class="dark">
     <div class="progress-bar" id="progressBar"></div>
 
     <header class="top">
         <div class="brand-mini">
             <div class="profile-photo-container" onclick="openSocial()">
-                <img class="profile-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSugbrsXM74O3pTDBktkpFtbulr1uZMUWB3uw&s" alt="Profile" />
+                <img class="profile-photo" src="https://drive.google.com/thumbnail?id=1pRPF-FiT-MhnnueDEInxHl0i0b43a_6Z&sz=w200" alt="Profile" />
             </div>
             <span>Path Of Guidance</span>
         </div>
         <div class="top-actions" id="topActions">
+            <!-- Buttons reordered per request: Dark mode first, then Settings buttons -->
+            <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Theme"><i class="fa-solid fa-moon"></i></button>
             <button class="icon-btn" id="contactBtn" onclick="openSocial()" aria-label="Social Media"><i class="fa-solid fa-globe"></i></button>
-            <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Theme"><i class="fa-solid fa-sun"></i></button>
             <button class="icon-btn" id="quranSettingsBtn" onclick="openQuranSettings()" aria-label="Quran Settings" style="display:none;"><i class="fa-solid fa-language"></i></button>
             <button class="icon-btn" id="hadithSettingsBtn" onclick="openHadithSettings()" aria-label="Hadith Settings" style="display:none;"><i class="fa-solid fa-language"></i></button>
             <button class="icon-btn" id="duaSettingsBtn" onclick="openDuaSettings()" aria-label="Dua Settings" style="display:none;"><i class="fa-solid fa-sliders-h"></i></button>
@@ -3638,10 +3654,13 @@
                 contactBtn.style.display = 'grid';
                 themeBtn.style.display = 'grid';
             } else if (tabId === 'quran') {
+                themeBtn.style.display = 'grid';
                 quranBtn.style.display = 'grid';
             } else if (tabId === 'hadith') {
+                themeBtn.style.display = 'grid';
                 hadithBtn.style.display = 'grid';
             } else if (tabId === 'dua') {
+                themeBtn.style.display = 'grid';
                 duaBtn.style.display = 'grid';
             }
         }
@@ -5370,7 +5389,7 @@
 
         // INIT
         (async function init() {
-            const t = S.get("pog_theme");
+            const t = S.get("pog_theme") || "dark";
             const z = S.get("pog_size") || 15;
             const az = S.get("pog_arabic_size") || 1.5;
             const hz = S.get("pog_hadith_size") || 15;
@@ -5380,6 +5399,7 @@
             const qa = S.get("pog_quran_arabic");
             if (qa !== null) showQuranArabic = qa === "true";
             if (t === "dark") document.body.classList.add("dark");
+            else document.body.classList.remove("dark");
             const themeBtn = document.querySelector("#themeBtn");
             if (themeBtn) themeBtn.innerHTML = t === "dark" ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
             document.querySelector("#size").value = z;
