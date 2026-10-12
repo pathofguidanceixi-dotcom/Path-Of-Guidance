@@ -101,39 +101,91 @@
         }
 
         /* ============================================================
-           FULLY RESPONSIVE IMAGE CARDS — no crop, no cut, any screen
-           ============================================================ */
-        .quran-image-card,
-        .hadith-image-card,
-        .dua-image-card {
-            background: #000000;
-            border-radius: var(--radius-lg);
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--line-dark);
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            min-height: 140px;
-            max-height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quran-image-card img,
-        .hadith-image-card img,
-        .dua-image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-            background: #000;
-        }
-        .quran-image-card img { transform: scale(1.20); transform-origin: center center; }
-        .hadith-image-card img { transform: scale(0.96); transform-origin: center center; }
-        .dua-image-card img { transform: scale(1.50); transform-origin: center center; }
+   QURAN IMAGE CARD — alag size
+   ============================================================ */
+.quran-image-card {
+    background: #000000;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line-dark);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 140px;
+    max-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quran-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #000;
+    transform: scale(1.20);          /* 👈 Quran zoom */
+    transform-origin: center center;
+}
 
+/* ============================================================
+   HADITH IMAGE CARD — alag size
+   ============================================================ */
+.hadith-image-card {
+    background: #000000;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line-dark);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 140px;
+    max-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hadith-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #000;
+    transform: scale(0.96);          /* 👈 Hadith zoom */
+    transform-origin: center center;
+}
+
+/* ============================================================
+   DUA IMAGE CARD — alag size
+   ============================================================ */
+.dua-image-card {
+    background: #000000;
+   -card border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line-dark);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 140px;
+    max-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dua-image-card img {
+    width: 120%;
+    height: 120%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #000;
+    transform: scale(1.20);          /* 👈 Dua zoom */
+    transform-origin: center center;
+}
         @media (max-width: 480px) {
             .quran-image-card, .hadith-image-card, .dua-image-card {
                 aspect-ratio: 16 / 10; min-height: 120px; max-height: 220px;
@@ -374,7 +426,7 @@
         .check input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; }
 
         .toast {
-            position: fixed; z-index: 5000; left: 50%; bottom: 110px;
+            position: fixed; z-index: 10001; left: 50%; bottom: 110px;
             transform: translate(-50%, 20px); opacity: 0;
             background: var(--surface-dark); color: var(--text-light);
             border: 1px solid var(--gold); border-radius: 50px;
@@ -1300,7 +1352,7 @@
             position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(4px); display: none;
             align-items: center; justify-content: center;
-            z-index: 200; padding: 1rem; opacity: 0;
+            z-index: 10000; padding: 1rem; opacity: 0;
             transition: opacity 0.3s ease;
         }
         .para-modal-backdrop.visible { display: flex; opacity: 1; }
